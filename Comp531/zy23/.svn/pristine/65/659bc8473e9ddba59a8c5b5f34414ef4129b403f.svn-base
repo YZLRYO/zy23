@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Zeliang Ye">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <script src="gwent.js"></script>
+</head>
+<body>
+<div style="position:fixed; top:0em; left:0em;">
+  <canvas width="900em" height="800em"></canvas>
+  <img id="pic" style="display: none" src="http://media-seawolf.cursecdn.com/avatars/thumbnails/10/293/228/293/1107icon.png">
+</div>
+
+
+</body>
+</html>

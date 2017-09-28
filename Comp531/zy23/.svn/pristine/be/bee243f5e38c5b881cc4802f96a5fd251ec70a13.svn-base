@@ -1,0 +1,31 @@
+body{
+	text-align:center;
+}
+
+div{
+	margin:2% auto;
+	text-align:left;
+} 
+
+img {
+   	max-width: 100%;
+    max-height: 100%;
+    margin: 2%;
+    margin-top: 6%;
+}
+
+.col-sm-4 {
+	height: 20em;
+}
+
+.col-sm-1 {
+	margin-top: 3.5em;
+}
+
+.col-sm-5 {
+	padding-left: 1em;
+}
+
+.row-fluid{
+	margin-left: 35%
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <title>Rice Book</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Zeliang Ye">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script language="JavaScript" src="main.js"></script>
+</head>
+
+<body>
+<div class="jumbotron text-center">
+  <h1>Rice Book</h1>
+  <p><a href="profile.html">Profile Page</a></p> 
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <h3>Post 1</h3>    
+    </div>
+    <div class="col-sm-4">
+      <img id="image0" src="https://www.conncoll.edu/media/major-images/Art.jpg">
+    </div>
+    <div class="col-sm-1">
+      <input id="button0" class="btn btn-primary" value="Stop" type="button">
+    </div>
+    <div class="col-sm-5">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sollicitudin maximus risus fermentum pretium. Donec nec commodo risus, vitae fermentum enim. Sed vel massa id ipsum congue aliquam eget quis est. Duis sed rutrum leo. Mauris sed purus vitae lectus tincidunt tempor at in tellus. Fusce ultricies efficitur mollis. Nulla facilisi. Integer scelerisque cursus leo nec lobortis. Vivamus vitae augue sed elit luctus mollis. Vivamus eget diam in mi pretium commodo. Sed bibendum sapien at pellentesque ultricies. Nullam at lacus a ligula fringilla malesuada. Sed leo massa, faucibus vitae risus ac, convallis auctor sem. Fusce fringilla lacinia maximus. Proin libero velit, ultricies non magna a, interdum gravida sapien. Aliquam erat volutpat. </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <h3>Post 2</h3>
+    </div>
+    <div class="col-sm-4">
+      <img id="image1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj3AwperEctfg-qt4m6FmFjX_C5AvBCLpoP1TyJqtGpLqj9zTqSg">
+    </div>
+    <div class="col-sm-1">
+      <input id="button1" class="btn btn-primary" value="Stop" type="button"> 
+    </div>
+    <div class="col-sm-5">
+      <p>Vestibulum ex nisi, consequat at odio nec, cursus laoreet libero. Aliquam lectus dolor, iaculis consequat purus sit amet, rutrum interdum tortor. Donec ac lectus metus. Nunc in ultricies tortor. Ut in purus eget odio vestibulum convallis. Sed arcu nibh, bibendum a ante id, maximus faucibus libero. Aenean ornare vulputate metus. Suspendisse fermentum vehicula hendrerit. Maecenas ultrices et magna convallis pretium. Phasellus eget leo vel ipsum laoreet rutrum. Ut sit amet ex ornare, dapibus nunc ac, viverra lacus. Nullam nunc arcu, gravida vitae suscipit non, varius vitae sapien. </p>
+    </div>
+  </div>
+
+  <div class="row">
+   <div class="col-sm-2">
+      <h3>Post 3</h3>
+    </div>
+    <div class="col-sm-4">
+      <img id="image2" src="https://www.sandiego.org/-/media/images/sdta-site/hero-gallery-rotators-645-x-340/regions/downtown/san-diego-convention-center-skyline.jpg?bc=black&amp;h=340&amp;w=453&amp;c=1">
+    </div>
+    <div class="col-sm-1">
+      <input id="button2" class="btn btn-primary" value="Stop" type="button">
+    </div>
+    <div class="col-sm-5">
+      <p>Mauris accumsan sollicitudin velit, vel volutpat turpis interdum id. Vivamus elementum nulla neque, nec sodales est pretium ut. Cras lacus dui, tempus quis sem at, mollis posuere ligula. Donec fringilla felis id hendrerit porta. Duis porta ipsum vitae urna tempus congue. Morbi eget urna euismod, ultricies ex nec, ullamcorper erat. Fusce vel elit at est dignissim efficitur. Aenean eget massa metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In erat arcu, ultrices vel tellus non, scelerisque volutpat nisi. </p>
+    </div>
+  </div>
+
+  <div class="row">
+   <div class="col-sm-2">
+      <h3>Post 4</h3>
+    </div>
+    <div class="col-sm-4">
+      <img id="image3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0sywIKJ7wogGRWUCFXnUvIJPcIHQf2LMfT4Unhsw_O0BptXY9wA">
+    </div>
+    <div class="col-sm-1">
+      <input id="button3" class="btn btn-primary" value="Stop" type="button">
+    </div>
+    <div class="col-sm-5">
+      <p>Fusce tincidunt, nulla quis dignissim convallis, ex arcu eleifend lectus, et maximus lectus justo ut nisi. Aliquam erat volutpat. Mauris vitae odio massa. Morbi sollicitudin eu erat ac tristique. Maecenas egestas leo at leo sodales interdum. Cras malesuada et tortor sed tempor. Fusce mi purus, pulvinar non lobortis ut, facilisis feugiat massa. Fusce eu tempus mi. Mauris pellentesque, justo at varius accumsan, ipsum erat tincidunt quam, in mattis nunc sem fringilla nunc. Praesent consectetur posuere ante sit amet congue. Curabitur varius, est et blandit fringilla, ex sapien elementum orci, at mollis nibh ex non metus. Suspendisse iaculis ornare quam nec aliquet. Fusce placerat accumsan maximus. Etiam mollis ligula elit, quis lobortis nibh euismod condimentum. Proin facilisis aliquet aliquam. </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <title>Profile</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Zeliang Ye">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script language="JavaScript" src="profile.js"></script>
+</head>
+
+<body>
+<div class="jumbotron text-center">
+  <h1>Rice Book</h1>
+  <p><a href="main.html">Main Page</a></p> 
+  <div class="row-fluid">
+    <p> Display Name:
+  	<input id="name" name="name" type="text" placeholder="Display Name">
+      <span id="currentname">Zeliang Ye</span></p>
+    <div id="nameAlert" style="display: none"></div>
+    <p> Email Address:
+  	  <input id="email" name="email" type="email" placeholder="Your valid email" title="Only accepts valid email format like XX(first can not be number)@XX.XX">
+      <span id="currentemail">zy23@rice.edu</span></p>
+    <div id="emailAlert" style="display: none">* Please input the valid pattern: XX@XX.XX</div>
+    <p> Phone Number:
+	  <input id="phone" name="phone" type="tel" placeholder="Your valid phone number" title="Only accepts valid phone format like xxx-xxx-xxxx">
+  	  <span id="currentphone">713-314-0255</span></p>
+	  <div id="phoneAlert" style="display: none">* Please input the valid pattern: XXX-XXX-XXXX</div>
+    <p> Zip Code:
+	  <input id="zipcode" name="zipcode" type="text" placeholder="Valid zip number XXXXX" title="Only accepts valid zip number like xxxx">
+      <span id="currentzipcode">77030</span></p>
+    <div id="zipcodeAlert" style="display: none">* Please input the valid pattern: XXXXX</div>
+    <p> Password:
+      <input id="password" name="password" type="password" title="Password required">
+      <span id="currentpassword">123456</span></p>
+    <div id="passwordAlert" style="display: none">* Required</div>
+    <p> Confirm Password:
+      <input id="confirmedPassword" name="confirmedPassword" type="password" title="Confirm your password">
+      <span id="currentconfirmedPassword">123456</span></p>
+    <div id="confirmedPasswordAlert" style="display: none">* Confirm password not match</div>
+    <div id="notification" style="display:none"></div>
+    <input id="submit" name="submit" type="submit" value="Update">   	
+  </div>
+</div>
+
+
+
+</body>
+</html>

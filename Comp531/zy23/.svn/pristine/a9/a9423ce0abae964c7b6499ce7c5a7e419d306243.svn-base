@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<title>Pizza Order</title>
+		<meta charset="utf-8">
+		<meta name="author" content="Zeliang Ye">
+	</head>
+	<body>
+		<form id="myForm" method="" action="#">
+			<p>Name: </p>
+			<input type="text" name="name" required>
+			<p>Address: #### Street Name </p>
+			<input type="text" name="street" required>
+			<p>Phone: 123-123-1234 </p>
+			<p><input type="tel" name="phone" pattern="\d\d\d-\d\d\d-\d\d\d\d" required></p>
+			<p>Pizza Size</p> 
+			<p><input type="radio" name="size" required=""> Large
+			&nbsp;<input type="radio" name="size"> Medium
+			&nbsp;<input type="radio" name="size"> Small</p>
+
+			<p>Pizza Topping</p>
+			<p><input type="checkbox" name="top"> Sausage&nbsp;<input type="checkbox" name="top"> Pepperoni&nbsp;<input type="checkbox" name="top"> Olivers&nbsp;<input type="checkbox" name="top"> Anchovnes&nbsp;<input type="checkbox" name="top"> Onions</p>
+			<input type="submit" value="Place Order"> 
+			<input type="reset" value="Clear">
+		</form>
+	</body>
+</html>

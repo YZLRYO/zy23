@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="author" content="Zeliang Ye">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script language="JavaScript" src="avoid.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.col-lg-4{ 
+	border:5px solid red;
+	border-radius:25px;
+	background-color: #7FFF00;
+	padding: 1em 1em 1em 1em;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+    </div>
+    <div id="title" class="col-lg-4" align="center" style="display: none">
+	  <h1>Congraduations!</h1>
+	  <h1>You won!</h1> 
+    </div>
+    <div class="col-sm-4"> 
+    </div>
+  </div>
+  <div class="row">
+    <button id="button" onclick="win()" style="margin-left: 45%; margin-top: 30%">Click Me!</button>
+  </div>
+</div>
+</body>
+</html>

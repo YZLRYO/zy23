@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gwent Card</title>
+  <meta charset="utf-8">
+  <meta name="author" content="Zeliang Ye">
+  <meta name="viewport" content="width=device-width, initial-scale=10">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="gwent.js"></script>
+  <script src="canvasApp.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+  	<div class="col-sm-9">
+      <canvas width="900em" height="800em"></canvas>
+    </div>
+    <div class="col-sm-3">
+      <div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th colspan="3">Best Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Highest Strength</td>
+              <td id="highScore">0</td>
+            </tr>
+            <tr>
+              <td>Winning Rate</td>
+              <td id="winRate">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row1">
+      	<h2>Difficulty</h2>
+        <input type="radio" name="difficulty" id="diff1" value="easy" checked="checked" required=""> Easy &nbsp;<input id="diff2" type="radio" name="difficulty" value="medium"> Medium &nbsp;<input id="diff3" type="radio" name="difficulty" value="hard"> Hard       
+      </div>
+      <br>
+      <input id="restart" value="restart"  type="button">
+      <input id="instructionButton" value="Display Instruction"  type="button">
+
+      <div id="instruction" style="display:none">
+        <p>You need to win 2 rounds over 3 rounds to win the game. To win a round, you need to play card on the board to make your total number bigger than that of the COM.</p>
+        <p>Select a card first and click the board (the yellow part) to place it on board. The up three rows are COM's row, the below three rows are your rows to play your unit card. The number on the card (if not special card) will count as your strength this round.</p> 
+        <p>You have in total 10 cards over a 15 cards deck. Arrange your order of card playing and press the pass button to stop playing cards on current round. </p>
+
+        <p>When both you and COM passed, player with higher strength win the round.</p>
+        <p>The Deck: 3,3,4,4,6,6,7,7,8,8,9,10,13,fog,horn </p>
+        <p>Special Card:</p>
+        <p>Horn: play it on one of your row to double the strength of that row.</p>
+        <p>Fog: play it on your rival to reduce the strength on all the cards to 1.</p>
+      </div>
+      <div class="jumbotron" id="indication">
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

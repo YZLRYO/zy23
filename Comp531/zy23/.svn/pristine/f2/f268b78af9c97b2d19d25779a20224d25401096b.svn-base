@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<script src="gwent.js"></script>
+</head>
+<body>
+
+<input id="build" value="Build" type="button">
+
+<div style="position:fixed; top:3em; left:0em;">
+	<canvas width="1200" height="800"></canvas>
+	<img id="pic" style="display: none" src="http://media-seawolf.cursecdn.com/avatars/thumbnails/10/293/228/293/1107icon.png">
+</div>
+
+
+</body></html>

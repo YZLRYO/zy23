@@ -1,0 +1,354 @@
+'use strict'
+var createApp = function(canvas) { 
+	var c = canvas.getContext("2d")
+	c.font = "20px Arial"
+	var playerDeck = [3,3,4,4,6,6,7,7,8,8,9,10,13,"fog","horn"]
+	var AIDeck = [3,3,4,4,6,6,7,7,8,8,9,10,13,"fog","horn"]
+	var explainText = {
+		3 : "Strength: 3",
+		4 : "Strength: 4",
+		6 : "Strength: 6",
+		7 : "Strength: 7",
+		8 : "Strength: 8",
+		9 : "Strength: 9",
+		10 : "Strength: 10",
+		13 : "Strength: 13",
+		"fog" : "Play on your enermy's row to reduce all units on that row to 1",
+		"horn" : "Play on your own row to double the strength of all units on that row"
+	}
+
+	function drawcard(i,deck,hand){
+		var index=0
+		for(var k=0;k<i;k++){
+			index=Math.floor(100*Math.random())%deck.length
+			hand[k]=deck[index]
+			deck.splice(index,1)
+		}
+	}
+
+	var cards = []
+	var AIcards = []
+	drawcard(10,playerDeck,cards)
+	drawcard(10,AIDeck,AIcards)
+	console.log(cards,AIcards)
+
+	var strength = [0,0,0,0,0,0]
+	var board = [[],[],[],[],[],[]]
+
+	// Create the background
+	var handHeight=canvas.height/6
+	var boardHeight=canvas.height*2/3
+	var boardWidth=canvas.width/3*2
+	var sCardHeight=boardHeight/6
+	var sCardWidth=boardWidth/10
+	
+	var sideHeight=canvas.height*2/3
+	var sideWidth=canvas.width/10
+	var cardWidth=canvas.width/12
+	var cardHeight=handHeight*0.9
+	var passX=canvas.width/12
+	var passY=canvas.height/2
+	var passRadius=passX*0.6
+	var crownX=[canvas.width/30,canvas.width/30*3,canvas.width/30,canvas.width/30*3]
+	var crownY=[canvas.height/4,canvas.height/4,canvas.height/4*3,canvas.height/4*3]
+	var rCrown=canvas.width/30*0.9
+	var img = document.getElementById("pic")
+	var passAI=0
+	var passPlayer=0
+	var playCard=0
+	var cardSelect=0
+	var playerWon=0
+	var AIWon=0
+	var endRound=0
+	var instruction="Select your card below to play on the yellow board, the up three rows are your enermy's rows, the below three are your rows."
+
+	var paint = {
+		paintAll: function(){
+			this.drawHand()
+			this.drawBoard()
+			this.drawBoardCard()
+			this.drawCount()
+			this.drawBorder()
+			this.drawCard()
+			this.drawPass()
+			this.drawCrown()
+			//this.fillExplain()
+		},
+		drawHand: function(){
+			// Draw Hand			
+			c.fillStyle="gray"
+			c.fillRect(0, 0, canvas.width, handHeight)
+			c.fillRect(0, handHeight*5, canvas.width, handHeight)
+		},
+		drawBoard: function(){
+			// Draw Board
+			c.fillStyle="#ffd41b"
+			c.fillRect(boardWidth/2, handHeight, boardWidth, boardHeight)		
+		},
+		drawBoardCard: function(){
+			for(var i=0;i<board.length;i++){
+				for(var j=0;j<board[i].length;j++){
+					c.fillStyle="white"
+					c.fillRect(canvas.width-(2+j+0.05)*sCardWidth, (i+0.05)*sCardHeight+handHeight, sCardWidth*0.9, sCardHeight*0.9)
+					c.fillStyle="black"
+					c.font="20px Arial"
+					c.fillText(board[i][j],boardWidth/2*3-(2+j-0.35)*sCardWidth, (i+0.55)*sCardHeight+handHeight)
+				}
+			}
+		},
+		drawCount: function(){
+			// Draw BoardSideCounter
+			c.fillStyle="green"
+			c.fillRect(boardWidth/2-sideWidth, handHeight, sideWidth, sideHeight)
+			c.fillStyle="black"
+			c.font="20px Arial"
+			for(var j=0;j<strength.length;j++){	
+				c.fillText(strength[j],boardWidth/2-0.2*sideWidth, handHeight+(j+0.55)*sideHeight/6);
+			}
+			c.fillText("Total:",boardWidth/2-0.9*sideWidth, handHeight+sideHeight/6)
+			c.fillText("Total:",boardWidth/2-0.9*sideWidth, handHeight+4*sideHeight/6)
+			c.font="40px Arial"
+			c.fillText(strength[0]+strength[1]+strength[2],boardWidth/2-0.8*sideWidth, handHeight+(1.65)*sideHeight/6);
+			c.fillText(strength[3]+strength[4]+strength[5],boardWidth/2-0.8*sideWidth, handHeight+(4.65)*sideHeight/6);	
+		},
+		drawBorder: function(){
+			// Draw border
+			c.fillStyle="black"
+			c.fillRect(boardWidth/2, handHeight+boardHeight/6*1, boardWidth, 1)
+			c.fillRect(boardWidth/2, handHeight+boardHeight/6*2, boardWidth, 1)
+			c.fillRect(boardWidth/2-sideWidth, handHeight+boardHeight/6*3, boardWidth+sideWidth, 1)
+			c.fillRect(boardWidth/2, handHeight+boardHeight/6*4, boardWidth, 1)
+			c.fillRect(boardWidth/2, handHeight+boardHeight/6*5, boardWidth, 1)
+		},
+		drawCard: function(){
+			// Draw Card		
+			for(var i = 0; i < cards.length; i++){
+				c.fillStyle="white"
+				c.fillRect(canvas.width-(i+1)*cardWidth, handHeight*5.05, cardWidth*0.95, cardHeight)
+				c.fillStyle="black"
+				c.font="20px Arial"
+				c.fillText(cards[i],canvas.width-(i+0.6)*cardWidth,handHeight*5.5)
+			}
+			for(var i = 0; i < AIcards.length; i++){
+				c.fillStyle="black"
+				c.fillRect(canvas.width-(i+1)*cardWidth, handHeight*0.05, cardWidth*0.95, cardHeight)
+			}
+		},
+		drawPass: function(){
+			// Draw Pass
+			c.fillStyle="blue"
+			c.beginPath()
+			c.arc(passX*0.9,passY,passRadius,0,2*Math.PI,false)
+			c.closePath()
+			c.fill()
+			c.fillStyle="black"
+			c.font="40px Arial"
+			if(passAI==1){
+				c.fillText("Passed",passX-1.2*passRadius,passY-1.5*passRadius)
+			}
+			if(passPlayer==1){
+				c.fillText("Passed",passX-1.2*passRadius,passY+2*passRadius)
+			}			
+		},
+		drawCrown: function(){
+			// Draw Crown
+			
+			for(var k=0;k<4;k++){
+				if((playerWon==1)&&(k==2)){
+					c.fillStyle="red"
+				}else if((AIWon==1)&&(k==0)){
+					c.fillStyle="red"
+				}else{
+					c.fillStyle="gray"
+				}
+				
+				c.beginPath()
+				c.arc(crownX[k],crownY[k],rCrown,0,2*Math.PI,false)
+				c.closePath()
+				c.fill()
+			}			
+		},
+		fillExplain: function(){
+			c.fillStyle="black"
+			c.font="20px Arial"
+			c.fillText(instruction,3/4*canvas.width, handHeight)
+		},
+		drawBanner: function(){
+			c.fillStyle="white"
+			c.fillRect(0, canvas.height/4, canvas.width, canvas.height/2)
+			c.fillStyle="black"
+			c.font="20px Arial"
+			var AIstrength=strength[0]+strength[1]+strength[2]
+			var Playerstrength=strength[3]+strength[4]+strength[5]
+			c.fillText("Your Strength: "+Playerstrength,canvas.width/2*0.8, canvas.height/4*1.2)
+			c.fillText("COM Strength: "+AIstrength,canvas.width/2*0.8, canvas.height/4*1.4)
+	
+			if(Playerstrength>AIstrength){
+				playerWon++
+				c.fillText("You win the round",canvas.width/2*0.8, canvas.height/4*1.6)
+			}else if(AIstrength>Playerstrength){
+				AIWon++
+				c.fillText("Com win the round",canvas.width/2*0.8, canvas.height/4*1.6)
+			}else{
+				playerWon++
+				AIWon++
+				c.fillText("Tie",canvas.width/2*0.8, canvas.height/4*1.6)
+			}
+			c.fillText("Click anywhere on board to continue",canvas.width/2*0.8, canvas.height/4*1.8)			
+		}
+
+	}
+
+	function endround(){
+
+			
+		for(var i=0;i<strength.length;i++){
+			if(strength[i]>0){
+				board[i].splice(0,board[i].length)
+			}
+			strength[i]=0;
+		}
+	}
+	
+
+	paint.paintAll()	
+
+	function emphasize(event) {
+		var mouseX = event.clientX
+		var mouseY = event.clientY
+		//console.log(mouseX,mouseY)
+		paint.paintAll()
+		function redrawCard(i){
+			if(i==-1){
+				return {}
+			}
+			c.fillStyle="red"
+			c.fillRect(canvas.width-(i+1)*cardWidth, handHeight*5.05, cardWidth*0.95, cardHeight)
+			c.fillStyle="black"
+			c.font="20px Arial"
+			c.fillText(cards[i],canvas.width-(i+0.6)*cardWidth,handHeight*5.5)
+			playCard=1	
+			cardSelect=i
+		}
+
+		function detectCard(){
+			var index=Math.floor((canvas.width-mouseX)/cardWidth)
+			return (index>=cards.length)?-1:index
+		}
+
+		function detectPass(){
+			return ((mouseX>passX-passRadius)&&(mouseX<passX+passRadius)&&(mouseY>passY-passRadius)&&(mouseY<passY+passRadius))
+		}
+
+		function detectBoard(){
+			if((mouseX<boardWidth/2)||(mouseX>boardWidth/2*3)||(mouseY<handHeight)||(mouseY>boardHeight+handHeight)){
+				return -1
+			}else{
+				return Math.floor((mouseY-handHeight)/(boardHeight/6))
+			}
+		}
+
+		function playCardExe(cards,cardindex,position,flag){
+			var cardValue=cards[cardindex]
+			if((cardValue=="fog")&&((3-position>=0)^flag)){
+
+				for(var i=0;i<board[position].length;i++){
+					board[position][i]-=board[position][i]-1
+				}
+				strength[position]=board[position].length
+			}else if((cardValue=="horn")&&((3-position<=0)^flag)){
+				for(var i=0;i<board[position].length;i++){
+					board[position][i]*=2
+				}
+				strength[position]*=2
+			}else if((cardValue!="fog")&&((3-position<=0)^flag)){
+				board[position][board[position].length]=cardValue
+				strength[position]+=cardValue
+			}else{
+				return -1
+			}
+			cards.splice(cardindex,1)
+			return 0
+		}
+		function AIPass(){
+			if(AIcards.length==0){
+				return true
+			}
+			var AIstrength=strength[0]+strength[1]+strength[2]
+			var Playerstrength=strength[3]+strength[4]+strength[5]
+			if((Playerstrength-AIstrength>10)||(Playerstrength-AIstrength<=-10)){
+				return true
+			}
+			return false
+		}
+
+		function AIplay(){
+				var position=Math.floor(Math.random()*123)%3
+				var card=Math.floor(Math.random()*100)%AIcards.length
+				if(AIPass()){
+					passAI=1
+					return
+				}
+				if(AIcards[card]=="fog"){
+					position+=3
+				}
+				playCardExe(AIcards,card,position,1)
+				// board[position][board[position].length]=AIcards[card]
+				// strength[position]+=AIcards[card]
+				// AIcards.splice(card,1)
+		}
+		
+
+		if(endRound==1){
+			endround()
+			paint.paintAll()
+			endRound=0
+		}else if(mouseY>handHeight*5){
+			var cardindex=detectCard()
+			//img.src=imgSrc[cards[cardindex]]
+			redrawCard(cardindex)
+		}else if(detectPass()){	
+			while(passAI!=1){
+				AIplay()
+			}
+			paint.paintAll()
+			paint.drawBanner()
+			endRound=1
+		}else if(playCard==1){
+			var res=-1
+			var p=detectBoard()
+			if(p==-1){
+				playCard=0
+			}else{
+				res=playCardExe(cards,cardSelect,p,0)
+				// board[p][board[p].length]=cards[cardSelect]
+				// strength[p]+=cards[cardSelect]
+				// cards.splice(cardSelect,1)
+				playCard=0
+				cardSelect=0	
+			}
+			
+			paint.paintAll()
+			if(res!=-1){
+				AIplay()
+				paint.paintAll()
+			}
+		}
+	}
+
+	
+
+	canvas.addEventListener("click", emphasize, false)
+
+	
+	return {
+		build: paint
+	}
+}
+
+window.onload = function() {
+	var app = createApp(document.querySelector("canvas"))
+	//document.getElementById("build").onclick = app.build
+}
+
+

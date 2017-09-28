@@ -1,0 +1,27 @@
+canvas {
+	 position:fixed;
+	 top:0em;
+	 left:0em;
+}
+
+.container {
+	position:fixed;
+	top:0em;
+	left:0em;
+}
+
+.row {
+	padding-left:5em;
+}
+
+.col-sm-9 {
+	left:0em;
+}
+
+.col-sm-3 {
+	padding-left:3em;
+}
+
+.jumbotron {
+	padding-top:5em;
+}
